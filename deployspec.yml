@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12.x
+    commands:
+      - yarn install --quiet
+      - yarn install -g serverless --quiet
+  build:
+    - yarn build
+    - sls deploy --force -v
+    - aws s3 rm sammurphy.dev --recursive
+    - aws s3 sync --delete build sammurphy.dev

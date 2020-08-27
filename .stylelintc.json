@@ -1,0 +1,10 @@
+{
+  "plugins": ["stylelint-scss"],
+  "rules": {
+    "scss/dollar-variable-pattern": "[A-Za-z0-9-]+",
+    "scss/selector-no-redundant-nesting-selector": true,
+    "scss/at-extend-no-missing-placeholder": null,
+    "max-nesting-depth": null
+  },
+  "extends": ["stylelint-config-airbnb", "stylelint-config-prettier"]
+}
