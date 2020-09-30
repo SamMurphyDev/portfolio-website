@@ -3,18 +3,23 @@ import React from 'react';
 export const AboutMeSection: React.FC = () => {
   return (
     <section className="about" id="about">
-      <h1>About Me</h1>
       <div className="row">
         {/* <div className="col-4"></div> */}
         <div className="col-8 ml-auto mr-auto">
-          <h2>Who am I?</h2>
-          <h3>
-            I'm Sam Murphy, a Full Stack Software Developer and a Natural Leader
-          </h3>
+          <h1>What I do</h1>
+          <h2 className="pt-3 pb-3">
+            Any fool can write code that a computer can understand. Good
+            programmers write code that humans can understand.
+            <footer className="blockquote-footer">
+              Martin Fowler in{' '}
+              <cite title="Refactoring: Improving the Design of Existing Code">
+                Refactoring: Improving the Design of Existing Code
+              </cite>
+            </footer>
+          </h2>
           <p>
-            Software improves the world we live in. Being a passion driven
-            indivdual that strives to create meaningful software with real world
-            impacts.
+            I'm full stack developer from Canberra, Australia who loves explore
+            the partnership of software and humans.
           </p>
           <p>
             I've worked with many businesses and government departments creating

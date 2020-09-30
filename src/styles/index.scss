@@ -158,7 +158,18 @@ body {
   @include section-default;
 
   h1 {
-    text-align: center;
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+    line-height: 1.3;
+
+    > footer {
+      font-size: 1rem;
+      padding-top: 0.5rem;
+      text-align: right;
+    }
   }
 
   h3 {
@@ -213,4 +224,10 @@ body {
       font-size: 0.75rem;
     }
   }
+}
+
+.tsparticles {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
 }

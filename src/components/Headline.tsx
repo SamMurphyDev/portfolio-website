@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useMeasure } from 'react-use';
 
+const durationAmount = 500;
+
 export const Headline: React.FC = () => {
   const words = ['Developer', 'Creator', 'Leader'];
 
@@ -10,7 +12,10 @@ export const Headline: React.FC = () => {
   const expand = useSpring({
     paddingRight: wordWrapperState ? 8 : 0,
     width: wordWrapperState ? width : 0,
-    config: { duration: 450 },
+    config: {
+      duration: durationAmount,
+      easing: (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2),
+    },
   });
   const [wordIndex, setWordIndex] = useState(0);
 
@@ -26,7 +31,7 @@ export const Headline: React.FC = () => {
         }
         setWordWrapperState(!wordWrapperState);
       },
-      wordWrapperState ? 2000 : 450
+      wordWrapperState ? 2000 : durationAmount
     );
 
     return () => clearTimeout(timer);

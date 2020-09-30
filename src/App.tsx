@@ -60,6 +60,7 @@ const App = () => {
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const [viewPortHeight, setViewPortHeight] = useState(window.innerHeight);
+  const [viewPortWidth, setViewPortWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,12 +77,16 @@ const App = () => {
       if (viewPortHeight !== window.innerHeight) {
         setViewPortHeight(window.innerHeight);
       }
+
+      if (viewPortWidth !== window.innerWidth) {
+        setViewPortWidth(window.innerWidth);
+      }
     };
 
     window.addEventListener('resize', handleWindowResize, { passive: true });
 
     return () => window.removeEventListener('resize', handleWindowResize);
-  }, [setViewPortHeight, viewPortHeight]);
+  }, [setViewPortHeight, viewPortHeight, viewPortWidth]);
 
   const shouldMenuBeInContainer = scrollPosition >= viewPortHeight * 0.55;
 
@@ -89,46 +94,49 @@ const App = () => {
   const viewingCallback = useCallback((id: string) => setInViewSection(id), []);
 
   return (
-    <Router>
-      <nav className="navbar fixed-top justify-content-end">
-        <MenuContainerWrapper useWrapper={shouldMenuBeInContainer}>
-          {shouldMenuBeInContainer && (
-            <HashLink smooth={true} to="#home" className="btn">
-              Home
+    <>
+      {/* <Particles className="tsparticles" /> */}
+      <Router>
+        <nav className="navbar fixed-top justify-content-end">
+          <MenuContainerWrapper useWrapper={false}>
+            {shouldMenuBeInContainer && (
+              <HashLink smooth={true} to="#home" className="btn">
+                Home
+              </HashLink>
+            )}
+            <HashLink smooth={true} to="#portfolio" className="btn">
+              Portfolio
             </HashLink>
-          )}
-          <HashLink smooth={true} to="#portfolio" className="btn">
-            Portfolio
-          </HashLink>
-          <HashLink smooth={true} to="#about" className="btn">
-            About
-          </HashLink>
-          <HashLink smooth={true} to="#contact" className="btn">
-            Contact
-          </HashLink>
-        </MenuContainerWrapper>
-      </nav>
-      <section className="app">
-        <VisibilityWrapper sectionId="home" callback={viewingCallback}>
-          <main className="container h-100" id="home">
-            <div className="row h-100 align-items-center justify-content-center">
-              <Headline />
-            </div>
-          </main>
-        </VisibilityWrapper>
-        <div className="fixed-wrapper">
-          <SocialButtons />
-        </div>
-        <div className="container">
-          <VisibilityWrapper sectionId="about" callback={viewingCallback}>
-            <AboutMeSection />
+            <HashLink smooth={true} to="#about" className="btn">
+              About
+            </HashLink>
+            <HashLink smooth={true} to="#contact" className="btn">
+              Contact
+            </HashLink>
+          </MenuContainerWrapper>
+        </nav>
+        <section className="app">
+          <VisibilityWrapper sectionId="home" callback={viewingCallback}>
+            <main className="container h-100" id="home">
+              <div className="row h-100 align-items-center justify-content-center">
+                <Headline />
+              </div>
+            </main>
           </VisibilityWrapper>
-          <VisibilityWrapper sectionId="contact" callback={viewingCallback}>
-            <ContactSection />
-          </VisibilityWrapper>
-        </div>
-      </section>
-    </Router>
+          <div className="fixed-wrapper">
+            <SocialButtons />
+          </div>
+          <div className="container">
+            <VisibilityWrapper sectionId="about" callback={viewingCallback}>
+              <AboutMeSection />
+            </VisibilityWrapper>
+            <VisibilityWrapper sectionId="contact" callback={viewingCallback}>
+              <ContactSection />
+            </VisibilityWrapper>
+          </div>
+        </section>
+      </Router>
+    </>
   );
 };
 
