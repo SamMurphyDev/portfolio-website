@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
       - yarn install --quiet
-      - yarn install -g serverless --quiet
+      - yarn global add serverless --quiet
 
   build:
     commands:
